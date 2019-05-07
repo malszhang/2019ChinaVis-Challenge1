@@ -1,7 +1,7 @@
 var dom = document.getElementById("heap");
 var myChart = echarts.init(dom);
 myChart.showLoading();
-$.get('data/day1.json', function(data) {
+$.get('show_data/day1_time.json', function(data) {
 	var x_data=[], y_data=[];
 	for (var i = 0; i <= 15; i++){
 		x_data.push(i)

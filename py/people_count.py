@@ -1,3 +1,5 @@
+# 该程序对file_read的要求：
+# 以id为主因素，time为次因素升序排序
 import json
 for f_id in range(3):
     file_id = str(f_id+1)

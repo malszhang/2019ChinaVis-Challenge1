@@ -1,4 +1,6 @@
 # ===K-means聚类分析===
+# 该程序对file_read的要求：
+# 以id为主因素，time为次因素升序排序
 import numpy as np
 import json
 

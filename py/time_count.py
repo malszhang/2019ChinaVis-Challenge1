@@ -1,3 +1,5 @@
+# 该程序对fr的要求：
+# 以time为主因素升序排序
 import json
 
 for f_id in range(3):
