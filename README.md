@@ -21,4 +21,4 @@
 
 **show_data**：需要展示的数据
 
-**dataIntro.md：**数据介绍
+**dataIntro.md**：数据介绍
