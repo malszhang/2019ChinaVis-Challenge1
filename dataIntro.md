@@ -4,10 +4,6 @@
 
 以下为各类json文件简称，例：day1_heap在介绍中为day_heap
 
-### 文件地址：
-
-
-
 ### 详情：
 
 #### day_heap：
