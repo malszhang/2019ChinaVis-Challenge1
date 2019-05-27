@@ -4,7 +4,7 @@ var date = []
 var cnt = []
 var _data = []
 myChart.showLoading();
-$.get('json/day1_time.json', function (data) {
+$.get('json/day1_change.json', function (data) {
 	_data = data
 	for (var i = 0; i < data.length; i++){
 		date.push(data[i].time);
