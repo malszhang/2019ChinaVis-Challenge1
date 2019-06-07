@@ -19,8 +19,6 @@
 
 **viewJs**：视图相关的js资源文件夹
 
-**py**：用于数据处理的python程序文件夹
-
 **json**：用于存放json数据资源
 
 **dataIntro.md**：数据介绍

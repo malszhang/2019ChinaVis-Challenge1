@@ -1,4 +1,5 @@
-var dom = document.getElementById("change");
+//会场的进出情况
+var dom = document.getElementById("inout");
 var myChart2 = echarts.init(dom);
 var date = []
 var cnt = []
@@ -88,8 +89,8 @@ function draw(_data){
 	
 				});
 			}
-			nodes[_data[i].links[j].target - 1].value1++;
-			Nvalue = nodes[_data[i].links[j].target - 1].value1;
+			nodes[target].value1++;
+			Nvalue = nodes[target].value1;
 			if (minN > Nvalue) minN = Nvalue;
 			if (maxN < Nvalue) maxN = Nvalue;
 		}
