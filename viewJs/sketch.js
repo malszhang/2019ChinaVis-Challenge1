@@ -1,20 +1,20 @@
-var dom = document.getElementById("heap");
+//人员流动图
+var dom = document.getElementById("change");
 var myChart = echarts.init(dom);
 var date = []
 var cnt = []
+
 var startValue = 0;
 var endValue = 10;
 var option = [];
 var nodes = []
 
-$.get('json/day3_links.json', function(data) {
-	for (var i = startValue; i < endValue; i++) {
-		_data.push(data[i]);
-	}
+$.get('json/day1_links.json', function(data) {
 	for (var i = 0; i < data.length; i++) {
 		date.push(data[i].time);
 		cnt.push(parseInt(data[i].links.length));
 	}
+	
 	option = {
 		tooltip: {
 			trigger: 'axis',
