@@ -65,7 +65,7 @@ var max = 0;
 var min = 1000;
 moveChart.hideLoading();
 moveChart.setOption(option1);
-function Heap(data,pid,p) {
+function Heap(data,pid) {
 	var node = []
 	for (var i = 0; i < data.length; i++) {
 		if (data[i].id == pid) {
@@ -109,10 +109,8 @@ function Heap(data,pid,p) {
 			target: idx + 1
 		};
 	});
-	var colors=['blue','red','yellow']
 	links.pop();
 	option1.series.push({
-		color:colors[p-1],
 		xAxisIndex: 1,
 		yAxisIndex: 0,
 		type: 'graph',

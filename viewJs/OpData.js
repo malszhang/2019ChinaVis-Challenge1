@@ -38,7 +38,9 @@ var aname1 = [
 	["出口4", "13"],
 
 ]
-var Color1 = ["#c40b13","#00334e","#5c8d89","#900c3f","#556fb5","#774e26","#729d39","#df4d19","#9873b9","#444444","#d8cbbb","#ffce76","#ffc1c8"]
+var Color1 = ["#c40b13","#00334e","#5c8d89","#900c3f","#556fb5",
+				"#774e26","#729d39","#df4d19","#9873b9","#444444",
+				"#F25157","#339CC7","#190036"]
 function draw(_data){
 	var nodes = [];
 	
@@ -93,6 +95,7 @@ function draw(_data){
 	
 				});
 			}
+			//nodes[source].value1--;
 			nodes[target].value1++;
 			Nvalue = nodes[target].value1;
 			if (minN > Nvalue) minN = Nvalue;

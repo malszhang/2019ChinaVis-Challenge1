@@ -12,13 +12,12 @@ $("#new").click(function(){
 		});
 })
 
-var p = 0
 $("#add").click(function(){
 	var day = $("#day").val();
 	var pid = $("#pid").val();
-	p++;
+
 	$.get('json/day' + day + '_person.json', function(data) {
-		Heap(data,pid,p)
+		Heap(data,pid)
 	});
 	
 })
