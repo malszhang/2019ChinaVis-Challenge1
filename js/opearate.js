@@ -7,6 +7,9 @@ $("#new").click(function(){
 			}
 			$("#pid").append(html);
 		})
+		$.get('json/day' + days + '_links.json', function(data) {
+			Link(data)
+		});
 })
 
 var p = 0
@@ -17,7 +20,5 @@ $("#add").click(function(){
 	$.get('json/day' + day + '_person.json', function(data) {
 		Heap(data,pid,p)
 	});
-	$.get('json/day' + day + '_links.json', function(data) {
-		Link(data)
-	});
+	
 })
