@@ -9,7 +9,7 @@ var endValue = 10;
 var option = [];
 var nodes = []
 
-$.get('json/day1_links.json', function(data) {
+function Link(data) {
 	var max = 0;
 	for (var i = 0; i < data.length; i++) {
 		date.push(data[i].time);
@@ -107,4 +107,4 @@ $.get('json/day1_links.json', function(data) {
 			}
 			draw(_data)
 		});
-})
+}

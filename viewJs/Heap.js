@@ -60,13 +60,15 @@ option1 = {
 	series: []
 };
 moveChart.showLoading();
-var node = []
+
 var max = 0;
 var min = 1000;
-var ids = [10000, 10023];
-$.get('json/day2_person.json', function(data) {
+moveChart.hideLoading();
+moveChart.setOption(option1);
+function Heap(data,pid,p) {
+	var node = []
 	for (var i = 0; i < data.length; i++) {
-		if (data[i].id == ids[0]) {
+		if (data[i].id == pid) {
 			var infor = data[i].info;
 			for (var j = 0; j < infor.length; j++) {
 
@@ -107,10 +109,10 @@ $.get('json/day2_person.json', function(data) {
 			target: idx + 1
 		};
 	});
-
+	var colors=['blue','red','yellow']
 	links.pop();
-	moveChart.hideLoading();
 	option1.series.push({
+		color:colors[p-1],
 		xAxisIndex: 1,
 		yAxisIndex: 0,
 		type: 'graph',
@@ -154,4 +156,4 @@ $.get('json/day2_person.json', function(data) {
 	});
 
 	moveChart.setOption(option1);
-});
+};

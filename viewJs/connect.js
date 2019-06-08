@@ -5,7 +5,7 @@ var connectChart = echarts.init(dom);
 connectChart.showLoading();
 var nodes = []
 var links = []
-$.get('json/connect3.json', function(data) {
+$.get('json/connect.json', function(data) {
 	
 	var innode = []
 	var _nodes = []
@@ -52,7 +52,7 @@ $.get('json/connect3.json', function(data) {
 			}
 		}
 		if (nodes[i].value > 0) {
-			nodes[i].symbolSize = (nodes[i].value-1)/6*10+10;
+			nodes[i].symbolSize = (nodes[i].value-1)/6*20+10;
 			_nodes.push(nodes[i]);
 		}
 
