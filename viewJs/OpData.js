@@ -1,66 +1,70 @@
 //会场的进出情况
 var dom = document.getElementById("inout");
-var myChart2 = echarts.init(dom);
+var inoutChart = echarts.init(dom);
 var date = []
 var cnt = []
-var aname = [
+var aname1 = [
 	["主会场", "1"],
 	["分会场A", "2"],
-	["分会场B", "3"],
-	["分会场C", "4"],
-	["分会场D", "5"],
-	["海报区", "6"],
-	["签到处", "7"],
-	["厕所1", "8"],
-	["厕所2", "9"],
-	["厕所3", "10"],
-	["展厅", "11"],
-	["餐厅", "12"],
-	["休闲区", "13"],
-	["服务台", "14"],
-	["room1", "15"],
-	["room2", "16"],
-	["room3", "17"],
-	["room4", "18"],
-	["room5", "19"],
-	["room6", "20"],
-	["扶梯1", "21"],
-	["扶梯2", "22"],
-	["扶梯3", "23"],
-	["扶梯4", "24"],
-	["入口1", "25"],
-	["入口2", "26"],
-	["入口3", "27"],
-	["入口4", "28"],
-	["出口1", "29"],
-	["出口2", "30"],
-	["出口3", "31"],
-	["出口4", "32"],
+	["分会场B", "2"],
+	["分会场C", "2"],
+	["分会场D", "2"],
+	["海报区", "3"],
+	["签到处", "4"],
+	["厕所1", "5"],
+	["厕所2", "5"],
+	["厕所3", "5"],
+	["展厅", "6"],
+	["餐厅", "7"],
+	["休闲区", "8"],
+	["服务台", "9"],
+	["room1", "10"],
+	["room2", "10"],
+	["room3", "10"],
+	["room4", "10"],
+	["room5", "10"],
+	["room6", "10"],
+	["扶梯1", "11"],
+	["扶梯2", "11"],
+	["扶梯3", "11"],
+	["扶梯4", "11"],
+	["入口1", "12"],
+	["入口2", "12"],
+	["入口3", "12"],
+	["入口4", "12"],
+	["出口1", "13"],
+	["出口2", "13"],
+	["出口3", "13"],
+	["出口4", "13"],
 
 ]
-var nodes = [];
-
-var categories = [];
-for (var i = 0; i < aname.length; i++) {
-	categories[i] = {
-		name: aname[i][0]
-	};
-	nodes[i] = {
-		"name": aname[i][0],
-		"value1": 0,
-		"category": aname[i][0],
-		"label": {
-			"normal": {
-				"show": true
-			}
-		},
-		"symbolSize": 10
-	};
-}
+var Color1 = ["#c40b13","#00334e","#5c8d89","#900c3f","#556fb5","#774e26","#729d39","#df4d19","#9873b9","#444444","#d8cbbb","#ffce76","#ffc1c8"]
 function draw(_data){
+	var nodes = [];
+	
+	var categories = [];
+	for (var i = 0; i < aname1.length; i++) {
+		categories[i] = {
+			name: aname1[i][1]
+		};
+		nodes[i] = {
+			"name": aname1[i][0],
+			"value1": 0,
+			"category": aname1[i][1],
+			"label": {
+				"normal": {
+					"show": true
+				}
+			},
+			"symbolSize": 10,
+			// "itemStyle":{
+			// 	"color":Color[i]
+			// }
+		};
+	}
 	var links = [];
-	var minL = 0;
-	var minN = 0;
+	var minL = 1000;
+	var minN = 1000;
 	var maxL = 0;
 	var maxN = 0;
 	for (var i = 0; i < _data.length; i++) {
@@ -103,18 +107,13 @@ function draw(_data){
 	}
 	option2 = {
 		title: {
-			text: 'Les Miserables',
-			subtext: 'Circular layout',
-			top: 'bottom',
-			left: 'right'
+			text: '人员出入图',
+			top: 10,
+			left: 20
 		},
+
+		color:Color1,
 		tooltip: {},
-		//         legend: [{
-		//             // selectedMode: 'single',
-		//             data: categories.map(function (a) {
-		//                 return a.name;
-		//             })
-		//         }],
 		animationDurationUpdate: 1500,
 		animationEasingUpdate: 'quinticInOut',
 		tooltip: {
@@ -124,7 +123,6 @@ function draw(_data){
 			}
 		},
 		series: [{
-			name: 'Les Miserables',
 			type: 'graph',
 			layout: 'circular',
 			circular: {
@@ -162,7 +160,7 @@ function draw(_data){
 			}
 		}]
 	};
-	myChart2.setOption(option2);
+	inoutChart.setOption(option2);
 }
 
 

@@ -6,7 +6,7 @@ function secondToDate(result) {
 }
 
 var dom = document.getElementById("heat");
-var myChart1 = echarts.init(dom);
+var moveChart = echarts.init(dom);
 var yAxis = []
 var xAxis = []
 for (var i = 32; i >= 0; i--) {
@@ -17,23 +17,31 @@ for (var i = 0; i <= 30; i++) {
 	xAxis.push(i);
 }
 option1 = {
-
-	graphic:[
-		{
-			type:'image',
-			top:60,
-			left:81,
-			z:-10,
-			style:{
-				image:'img/floor3.jpg',
-				width:643,
-				height:640*32/30,
-                opacity: 0.4
-			}
+	title: {
+		text: '人员移动轨迹图',
+		top: 10,
+		left: 20
+	},
+	grid: {
+		left: 20,
+		top: 50,
+		right: 20,
+		bottom: 20,
+	},
+	graphic: [{
+		type: 'image',
+		top: 50,
+		left: 20,
+		bottom: 30,
+		right: 20,
+		z: -10,
+		style: {
+			image: 'img/floor3.jpg',
+			width: 765,
+			height: 482,
 		}
-	],
+	}],
 	xAxis: [{
-			
 			show: false
 		},
 		{
@@ -45,52 +53,52 @@ option1 = {
 		show:false,
 		data: yAxis
 	},
-	
+
 	dataZoom: {
 		type: 'inside'
 	},
 	series: []
 };
-myChart1.showLoading();
+moveChart.showLoading();
 var node = []
 var max = 0;
 var min = 1000;
-var ids = [10000,10023];
+var ids = [10000, 10023];
 $.get('json/day2_person.json', function(data) {
 	for (var i = 0; i < data.length; i++) {
-		if (data[i].id == ids[1]) {
+		if (data[i].id == ids[0]) {
 			var infor = data[i].info;
 			for (var j = 0; j < infor.length; j++) {
-				
+
 				var f = parseInt(infor[j].sid[0]);
 				var x = parseInt(infor[j].sid.slice(3));
 				var y = parseInt(infor[j].sid.slice(1, 3));
-				var time = infor[j].end_time-infor[j].start_time;
-				time = time <= 0? 0: time;
-				if (time > max){
+				var time = infor[j].end_time - infor[j].start_time;
+				time = time <= 0 ? 0 : time;
+				if (time > max) {
 					max = time;
 				}
-				if (time < min){
+				if (time < min) {
 					min = time;
 				}
-				if (f == 1){
-					y = 32-y;
-				}else{
-					y = 15-y;
+				if (f == 1) {
+					y = 32 - y;
+				} else {
+					y = 15 - y;
 				}
-				node.push([x,y,time,infor[j].start_time,infor[j].end_time]);
-// 				node.push({
-// 					"x":x,
-// 					"y":y,
-// 					"value":time,
-// 					"name":infor[j].start_time
-// 				})
-				
+				node.push([x, y, time, infor[j].start_time, infor[j].end_time]);
+				// 				node.push({
+				// 					"x":x,
+				// 					"y":y,
+				// 					"value":time,
+				// 					"name":infor[j].start_time
+				// 				})
+
 			}
 			//console.log(node);
 			break;
 		}
-		
+
 	}
 
 	var links = node.map(function(item, idx) {
@@ -99,12 +107,12 @@ $.get('json/day2_person.json', function(data) {
 			target: idx + 1
 		};
 	});
-	
+
 	links.pop();
-	myChart1.hideLoading();
+	moveChart.hideLoading();
 	option1.series.push({
 		xAxisIndex: 1,
-		yAxisIndex:0,
+		yAxisIndex: 0,
 		type: 'graph',
 		coordinateSystem: 'cartesian2d',
 		data: node,
@@ -127,22 +135,23 @@ $.get('json/day2_person.json', function(data) {
 		label: {
 			normal: {
 				textStyle: {
-					color: '#333'
+					color: '#C93028',
+					fontSize:18
 				},
 				position: 'top',
-				formatter: function(params){
-					return secondToDate(params.data[3])+"~"+secondToDate(params.data[4])
+				formatter: function(params) {
+					return secondToDate(params.data[3]) + "~" + secondToDate(params.data[4])
 				}
 			}
 		},
-		symbolSize: function(params){
-			
-			return (params[2]-min)/(max-min)*20+5
+		symbolSize: function(params) {
+
+			return (params[2] - min) / (max - min) * 20 + 5
 		},
 		animationDelay: function(idx) {
 			return idx * 100;
 		}
 	});
 
-	myChart1.setOption(option1);
+	moveChart.setOption(option1);
 });

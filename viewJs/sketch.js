@@ -1,6 +1,6 @@
 //人员流动图
 var dom = document.getElementById("change");
-var myChart = echarts.init(dom);
+var changeChart = echarts.init(dom);
 var date = []
 var cnt = []
 
@@ -10,21 +10,33 @@ var option = [];
 var nodes = []
 
 $.get('json/day1_links.json', function(data) {
+	var max = 0;
 	for (var i = 0; i < data.length; i++) {
 		date.push(data[i].time);
 		cnt.push(parseInt(data[i].links.length));
+		max = max > cnt[i]? max: cnt[i];
 	}
 	
 	option = {
+		title:{
+			text:'人员移动轨迹图',
+			top:10,
+			left:20
+		},
 		tooltip: {
 			trigger: 'axis',
 			position: function(pt) {
 				return [pt[0], '10%'];
 			}
 		},
-		title: {
-			left: 'center',
-			text: '时间——人员流动图',
+// 		title: {
+// 			left: 'center',
+// 			text: '时间——人员流动图',
+// 		},
+		grid:{
+			top:0,
+			left:50,
+			right:50
 		},
 		toolbox: {
 			feature: {
@@ -32,7 +44,6 @@ $.get('json/day1_links.json', function(data) {
 					yAxisIndex: 'none'
 				},
 				restore: {},
-				saveAsImage: {}
 			}
 		},
 		xAxis: [{
@@ -41,7 +52,10 @@ $.get('json/day1_links.json', function(data) {
 			data: date
 		}],
 		yAxis: [{
+			show:false,
 			type: 'value',
+			min:0,
+			max:max,
 			boundaryGap: [0, '100%']
 		}],
 		dataZoom: [{
@@ -83,10 +97,10 @@ $.get('json/day1_links.json', function(data) {
 			data: cnt
 		}]
 	};
-	myChart.setOption(option);
-	myChart.on('datazoom', function(params) {
-			startValue = myChart.getOption().dataZoom[0].startValue;
-			endValue = myChart.getOption().dataZoom[0].endValue;
+	changeChart.setOption(option);
+	changeChart.on('datazoom', function(params) {
+			startValue = changeChart.getOption().dataZoom[0].startValue;
+			endValue = changeChart.getOption().dataZoom[0].endValue;
 			var _data = []
 			for (var i = startValue; i < endValue; i++) {
 				_data.push(data[i]);

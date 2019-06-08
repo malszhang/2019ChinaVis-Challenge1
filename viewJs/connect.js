@@ -1,13 +1,15 @@
 //人员关系图
 var dom = document.getElementById("connect");
-var myChart = echarts.init(dom);
+var connectChart = echarts.init(dom);
+
+connectChart.showLoading();
 var nodes = []
 var links = []
-var innode = []
-var _nodes = []
-var category = []
-myChart.showLoading();
-$.get('json/connect.json', function(data) {
+$.get('json/connect3.json', function(data) {
+	
+	var innode = []
+	var _nodes = []
+	var category = []
 	for (var i = 0; i < data.length; i++) {
 		nodes.push({
 			"name": data[i].id,
@@ -27,7 +29,7 @@ $.get('json/connect.json', function(data) {
 				links.push({
 					"source": data[i].id,
 					"target": data[i].infor[j].id.toString(),
-					"value": data[i].infor[j].sim,
+					"value1": data[i].infor[j].sim,
 					//"value":5
 				})
 				nodes[i].value++;
@@ -41,7 +43,7 @@ $.get('json/connect.json', function(data) {
 			caIndex++;
 		}
 	}
-
+	var max = 0;
 	for (var i = 0; i < nodes.length; i++) {
 		for (var j = 0; j < innode.length; j++) {
 			if (nodes[i].name == innode[j][0]) {
@@ -50,19 +52,25 @@ $.get('json/connect.json', function(data) {
 			}
 		}
 		if (nodes[i].value > 0) {
-			nodes[i].symbolSize = nodes[i].value;
+			nodes[i].symbolSize = (nodes[i].value-1)/6*10+10;
 			_nodes.push(nodes[i]);
 		}
+
 	}
 
-	myChart.hideLoading();
+	connectChart.hideLoading();
 
 	option = {
+		grid:{
+			top:10,
+			left:50,
+			right:50,
+			bottom:10
+		},
 		title: {
-			text: 'Les Miserables',
-			subtext: 'Default layout',
-			top: 'bottom',
-			left: 'right'
+			text: '人员关系图',
+			top: 10,
+			left: 20
 		},
 		tooltip: {},
 		//animationDurationUpdate: 1500,
@@ -78,21 +86,7 @@ $.get('json/connect.json', function(data) {
 			feature: {},
 			z: 202
 		},
-		brush:{
-			brushLink:'all',
-			inBrush:{
-				
-				opacity:1,
-				symbolSize:14
-			},
-			outOfBrush:{
-				color:'#fff',
-				opacity:0.2
-			},
-			z:10
-		},
 		series: [{
-			name: 'Les Miserables',
 			type: 'graph',
 			layout: 'force',
 			//animation: false,
@@ -107,7 +101,7 @@ $.get('json/connect.json', function(data) {
 			},
 			force: {
 				initLayout: 'circular',
-				repulsion: 20,
+				repulsion: 50,
 				gravity: 0.2,
 				edgeLength: 5
 			},
@@ -124,5 +118,5 @@ $.get('json/connect.json', function(data) {
 		}]
 	};
 
-	myChart.setOption(option);
+	connectChart.setOption(option);
 });

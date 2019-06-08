@@ -6,47 +6,55 @@
 		<style> body {padding: 0; margin: 0;} </style>
 		<script type="text/javascript" src="jquery/jquery-1.4.4.min.js"></script>
 		<script type="text/javascript" src="js/echarts.min.js"></script>
-
+		<!-- <script type="text/javascript" src="js/bootstrap.js"></script> -->
 		<script type="text/javascript" src="js/echarts.js"></script>
 		<script type="text/javascript" src="js/echarts-gl.js"></script>
-		<script type="text/javascript">
-			var _data = []
-		</script>
-
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/mystyle.css">
 
 	</head>
-	<body>
+	<body style="background-color:rgb(204,204,204);">
+		<div class="col-sm-12" style="background-color: rgb(47,69,84)">
+			<ul class="nav nav-pills">
+				<h4 role="presentation" class="active" style="color:white">
+					<b>Analytics</b>
+				</h4>
+			</ul>
 
-		<div id = "change" style="width:1200px;height:500px">
-			<script type="text/javascript" src="viewJs/sketch.js"></script>
-		</div>
-		<!-- <div class="row">
-			<div id="heat" class="col-sm-12" style="width:800px;height:800px;">
-				<script type="text/javascript" src="viewJs/Heap.js"></script>
-			</div>
 		</div>
 		<div class="row">
+			<div class="col-md-7">
+				<div id="screen">
+					<form class="navbar-form" role="search">
+						<select class="form-control">
+							<option>Day1</option>
+							<option>Day2</option>
+							<option>Day3</option>
+						</select>
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="人员id">
+						</div>
 
-			<div id="connect" class="col-sm-12" style="width:1200px;height:600px">
-				<script type="text/javascript" src="viewJs/connect.js"></script>
+						<button type="submit" class="btn btn-default">Submit</button>
+
+					</form>
+				</div>
+				<div id="heat">
+					<script type="text/javascript" src="viewJs/Heap.js"></script>
+				</div>
+				<div id="change">
+					<script type="text/javascript" src="viewJs/sketch.js"></script>
+				</div>
 			</div>
-		</div> -->
-		<!-- 	<select id="selectID">
-				<option value="one">第一天</option>
-				<option value="two">第二天</option>
-				<option value="three">第三天</option>
-			</select>
-			<input id="inputID" type="number">
-			<input id="buttonID" type="button" onclick="show()" value="submit">
-			</div> -->
-		<!-- </div>
-		<!-- <div id="heat" style="width:800;height:800px">
-			<script type="text/javascript" src="viewJs/Heap.js"></script>
-		</div> -->
-		<div id = "inout" style="width:1200px;height:500px">
-			<script type="text/javascript" src="viewJs/OpData.js"></script>
-		</div>
-
-
+			<div class="col-md-5">
+				<div id="inout">
+					<script type="text/javascript" src="viewJs/OpData.js"></script>
+				</div>
+				<div id="connect">
+					<script type="text/javascript" src="viewJs/connect.js"></script>
+				</div>
+				<div>
+				</div>
+			</div>
 	</body>
 </html>

@@ -1,0 +1,35 @@
+#inout{
+	width:540px;
+	height:450px;
+	background:white;
+	border-radius:15px;
+	margin-top:5px
+}
+#connect{
+	width:540px;
+	height:400px;
+	background:white;
+	border-radius:15px;
+	margin-top:5px
+}
+#heat{
+	width:800px;
+	height:550px;
+	background:white;
+	border-radius:15px;
+
+}
+#change{
+	width:800px;
+	height:255px;
+	background:white;
+	border-radius:15px;
+	margin-top:5px
+}
+#screen{
+	background:white;
+	margin-top:5px;
+	border-radius:15px;
+	width:800px;
+	height:35px;
+}
