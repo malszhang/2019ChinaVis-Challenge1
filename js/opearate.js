@@ -15,9 +15,9 @@ $("#new").click(function(){
 $("#add").click(function(){
 	var day = $("#day").val();
 	var pid = $("#pid").val();
-
 	$.get('json/day' + day + '_person.json', function(data) {
-		Heap(data,pid)
+			Heap(data,pid)
+		
 	});
 	
 })

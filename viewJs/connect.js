@@ -5,11 +5,22 @@ var connectChart = echarts.init(dom);
 connectChart.showLoading();
 var nodes = []
 var links = []
+var means = []
+$.get('json/means4.json',function(data){
+	for (var i = 0; i < data.length; i++) {
+		means.push([data[i][0],data[i][1]]);
+	}
+})
 $.get('json/connect.json', function(data) {
 	
 	var innode = []
 	var _nodes = []
-	var category = []
+	var category = [];
+	for (var i = 1; i <= 4; i++){
+		category[i-1] = {
+			name:"类别"+i
+		}
+	}
 	for (var i = 0; i < data.length; i++) {
 		nodes.push({
 			"name": data[i].id,
@@ -19,13 +30,10 @@ $.get('json/connect.json', function(data) {
 			"category": 0
 		})
 	}
-	var caIndex = 1;
-	var flag = 0;
-	var index;
+
 	for (var i = 0; i < data.length; i++) {
 		for (var j = 0; j < data[i].infor.length; j++) {
 			if (data[i].infor[j].sim > 0.4) {
-				flag = 1;
 				links.push({
 					"source": data[i].id,
 					"target": data[i].infor[j].id.toString(),
@@ -33,26 +41,26 @@ $.get('json/connect.json', function(data) {
 					//"value":5
 				})
 				nodes[i].value++;
-				
-				innode.push([data[i].infor[j].id, caIndex]);
+				innode.push(data[i].infor[j].id);
 			}
-		}
-		if (flag == 1){
-			category.push(caIndex);
-			nodes[i].category = caIndex;
-			caIndex++;
 		}
 	}
 	var max = 0;
 	for (var i = 0; i < nodes.length; i++) {
 		for (var j = 0; j < innode.length; j++) {
-			if (nodes[i].name == innode[j][0]) {
+			if (nodes[i].name == innode[j]) {
 				nodes[i].value++;
-				nodes[i].category = innode[j][1]
 			}
 		}
 		if (nodes[i].value > 0) {
-			nodes[i].symbolSize = (nodes[i].value-1)/6*20+10;
+			for (var j = 0; j < means.length; j++) {
+				if (nodes[i].name == means[j][0]){
+					cate = "类别"+(parseInt(means[j][1])+1)
+					break;
+				}
+			}
+			nodes[i].category = cate;
+			nodes[i].symbolSize = (nodes[i].value-1)/6*15+10;
 			_nodes.push(nodes[i]);
 		}
 
@@ -61,6 +69,10 @@ $.get('json/connect.json', function(data) {
 	connectChart.hideLoading();
 
 	option = {
+		legend:{
+			data:category,
+			top:15
+		},
 		grid:{
 			top:10,
 			left:50,
