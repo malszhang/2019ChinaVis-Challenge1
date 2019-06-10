@@ -71,7 +71,7 @@ $.get('json/connect.json', function(data) {
 	option = {
 		legend:{
 			data:category,
-			top:15
+			top:35
 		},
 		grid:{
 			top:10,
@@ -80,7 +80,7 @@ $.get('json/connect.json', function(data) {
 			bottom:10
 		},
 		title: {
-			text: '人员关系图',
+			text: '人员活动轨迹相似度关系图',
 			top: 10,
 			left: 20
 		},
@@ -113,8 +113,8 @@ $.get('json/connect.json', function(data) {
 			},
 			force: {
 				initLayout: 'circular',
-				repulsion: 50,
-				gravity: 0.2,
+				repulsion: 30,
+				gravity: 0.3,
 				edgeLength: 5
 			},
 

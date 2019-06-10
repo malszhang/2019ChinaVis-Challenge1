@@ -19,7 +19,7 @@ function Link(data) {
 	
 	option = {
 		title:{
-			text:'人员移动轨迹图',
+			text:'人员流动数量统计图',
 			top:10,
 			left:20
 		},
@@ -44,7 +44,8 @@ function Link(data) {
 					yAxisIndex: 'none'
 				},
 				restore: {},
-			}
+			},
+			right:40
 		},
 		xAxis: [{
 			type: 'category',

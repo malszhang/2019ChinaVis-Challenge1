@@ -110,7 +110,7 @@ function draw(_data){
 	}
 	option2 = {
 		title: {
-			text: '人员出入图',
+			text: '场地间人员出入图',
 			top: 10,
 			left: 20
 		},
