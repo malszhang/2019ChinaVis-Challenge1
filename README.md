@@ -21,4 +21,6 @@
 
 **json**：用于存放json数据资源
 
+**document**：用于存放比赛的文档与视频
+
 **dataIntro.md**：数据介绍
